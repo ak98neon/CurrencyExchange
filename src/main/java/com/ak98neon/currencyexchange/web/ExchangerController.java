@@ -9,10 +9,12 @@ import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
@@ -32,10 +34,11 @@ public class ExchangerController {
 
     @ApiOperation(value = "Set a new commissions to pair of currencies", response = CommissionsDto.class)
     @ApiResponses(value = {
-            @ApiResponse(code = 200, message = "Successfully set a new commissions"),
+            @ApiResponse(code = 201, message = "Successfully set a new commissions"),
             @ApiResponse(code = 401, message = "You are not authorized to set the commission"),
     })
     @PostMapping("/commissions")
+    @ResponseStatus(HttpStatus.CREATED)
     public CommissionsDto setCommissionsToCurrencyPair(final @RequestBody CommissionsDto commissionsDto) {
         return currencyExchangeService.setCommission(commissionsDto);
     }

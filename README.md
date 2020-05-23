@@ -7,6 +7,7 @@
 3. For run demo of the service execute demo-up.sh, stop -> demo-down.sh
 
 After that service will be available on localhost:8080
+Default user: username: admin, password: password
 
 Project have rest client in root project directory list-api.rest
 

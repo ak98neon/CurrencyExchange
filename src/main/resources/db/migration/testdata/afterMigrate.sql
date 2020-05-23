@@ -22,7 +22,6 @@ INSERT INTO commissions (id, from_currency, to_currency, value) VALUES (2, 'USD'
 INSERT INTO commissions (id, from_currency, to_currency, value) VALUES (3, 'UAH', 'USD', 3);
 
 INSERT INTO exchange_rates (id, from_currency, to_currency, rate) VALUES (1, 'USD', 'UAH', 27);
-INSERT INTO exchange_rates (id, from_currency, to_currency, rate) VALUES (2, 'UAH', 'UAH', 0.037);
 INSERT INTO exchange_rates (id, from_currency, to_currency, rate) VALUES (3, 'USD', 'RUB', 70);
 INSERT INTO exchange_rates (id, from_currency, to_currency, rate) VALUES (4, 'RUB', 'USD', 0.014);
 INSERT INTO exchange_rates (id, from_currency, to_currency, rate) VALUES (5, 'UAH', 'USD', 0.037);
