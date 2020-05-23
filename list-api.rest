@@ -2,7 +2,7 @@
 POST http://{{host}}/api/commissions
 Accept: application/json
 Content-Type: application/json
-Authorization: Basic admin password
+Authorization: Basic {{username}} {{password}}
 
 {
   "commissionPt": 0,
@@ -14,7 +14,40 @@ Authorization: Basic admin password
 
 #get all commissions
 GET http://{{host}}/api/commissions
-Content-Type: application/json
-Authorization: Basic admin password
+Content-Type: {{content-type}}
+Authorization: Basic {{username}} {{password}}
 
 ###
+
+#get exchange rates
+GET http://{{host}}/api/exchange-rates
+Content-Type: {{content-type}}
+Authorization: Basic {{username}} {{password}}
+
+###
+
+#set exchange rates
+POST http://{{host}}/api/exchange-rates
+Content-Type: {{content-type}}
+Authorization: Basic {{username}} {{password}}
+
+{
+  "from": "USD",
+  "rate": 27,
+  "to": "UAH"
+}
+
+###
+
+#exchange
+POST http://{{host}}/api/exchange
+Content-Type: {{content-type}}
+Authorization: Basic {{username}} {{password}}
+
+{
+  "amountFrom": 0,
+  "amountTo": 100,
+  "currencyFrom": "UAH",
+  "currencyTo": "USD",
+  "operationType": "GET"
+}

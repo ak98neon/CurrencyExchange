@@ -9,6 +9,7 @@ import com.ak98neon.currencyexchange.web.dto.CommissionsDto;
 import com.ak98neon.currencyexchange.web.dto.ExchangeRateDto;
 import com.ak98neon.currencyexchange.web.dto.ExchangeRequest;
 import com.ak98neon.currencyexchange.web.dto.OperationType;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -16,6 +17,7 @@ import java.util.List;
 
 import static com.ak98neon.currencyexchange.util.DecimalUtils.round;
 
+@Slf4j
 @Service
 public class DefaultCurrencyExchangeService implements CurrencyExchangeService {
 
@@ -33,18 +35,21 @@ public class DefaultCurrencyExchangeService implements CurrencyExchangeService {
 
     @Override
     public CommissionsDto setCommission(final CommissionsDto commissionsDto) {
+        log.info("Set new commission to currencies pair: " + commissionsDto);
         commissionRepository.saveAndFlush(commissionsDto.to());
         return commissionsDto;
     }
 
     @Override
     public List<Commission> getCommission() {
+        log.info("Fetch all commissions");
         return commissionRepository.findAll();
     }
 
     @Override
     @Transactional
     public ExchangeRateDto setExchangeRate(ExchangeRateDto exchangeRateDto) {
+        log.info("Setting new exchange rate to currencies pair: " + exchangeRateDto);
         exchangeRatesRepository.saveAndFlush(exchangeRateDto.to());
 
         final double backwardRate = 1 / (exchangeRateDto.getRate() / 1);
@@ -52,18 +57,22 @@ public class DefaultCurrencyExchangeService implements CurrencyExchangeService {
                 new ExchangeRate(
                         new CurrencyId(exchangeRateDto.getTo(), exchangeRateDto.getFrom()),
                         round(backwardRate, 3));
+
         exchangeRatesRepository.saveAndFlush(backwardExchangeRate);
+        log.info("Successfully sot new exchange rate to currencies pair");
         return exchangeRateDto;
     }
 
     @Override
     public List<ExchangeRate> getExchangeRate() {
+        log.info("Fetch all exchange rates");
         return exchangeRatesRepository.findAll();
     }
 
     @Override
     @Transactional
     public ExchangeRequest exchange(ExchangeRequest exchangeRequest) {
+        log.info("Exchange currencies: " + exchangeRequest);
         final OperationType operationType = exchangeRequest.getOperationType();
 
         if (operationType.equals(OperationType.GET)) {
