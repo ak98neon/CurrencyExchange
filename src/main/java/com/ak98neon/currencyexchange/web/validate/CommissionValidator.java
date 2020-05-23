@@ -10,9 +10,9 @@ public class CommissionValidator implements ConstraintValidator<CommissionConstr
 
     @Override
     public boolean isValid(CommissionsDto commissionsDto, ConstraintValidatorContext constraintValidatorContext) {
-        final Long commissionPt = commissionsDto.getCommissionPt();
+        final Double commissionPt = commissionsDto.getCommissionPt();
 
-        if (commissionPt < 0 || commissionPt > 100) {
+        if (commissionPt < 0.0 || commissionPt > 100.0) {
             constraintValidatorContext.disableDefaultConstraintViolation();
             constraintValidatorContext
                     .buildConstraintViolationWithTemplate("Cannot set a new commission, value less or more than 0.0 : 100.0")

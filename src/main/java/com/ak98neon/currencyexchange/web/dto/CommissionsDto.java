@@ -1,7 +1,7 @@
 package com.ak98neon.currencyexchange.web.dto;
 
 import com.ak98neon.currencyexchange.model.Commission;
-import com.ak98neon.currencyexchange.model.CommissionId;
+import com.ak98neon.currencyexchange.model.CurrencyId;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -12,12 +12,12 @@ import java.util.stream.Collectors;
 @Data
 @NoArgsConstructor
 public class CommissionsDto {
-    private Long commissionPt;
+    private Double commissionPt;
     private String from;
     private String to;
 
     @JsonCreator
-    public CommissionsDto(final Long commissionPt,
+    public CommissionsDto(final Double commissionPt,
                           final String from,
                           final String to) {
         this.commissionPt = commissionPt;
@@ -28,8 +28,8 @@ public class CommissionsDto {
     public static CommissionsDto of(final Commission commission) {
         return new CommissionsDto(
                 commission.getValue(),
-                commission.getCommissionId().getFrom(),
-                commission.getCommissionId().getTo()
+                commission.getCurrencyId().getFrom(),
+                commission.getCurrencyId().getTo()
         );
     }
 
@@ -38,6 +38,6 @@ public class CommissionsDto {
     }
 
     public Commission to() {
-        return new Commission(new CommissionId(this.from, this.to), this.commissionPt);
+        return new Commission(new CurrencyId(this.from, this.to), this.commissionPt);
     }
 }

@@ -8,17 +8,17 @@ import javax.persistence.Entity;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "commissions")
+@Table(name = "exchange_rates")
 @Data
 @NoArgsConstructor
-public class Commission {
+public class ExchangeRate {
     @EmbeddedId
     private CurrencyId currencyId;
-    private Double value;
+    private Double rate;
 
-    public Commission(final CurrencyId currencyId,
-                      final Double value) {
+    public ExchangeRate(final CurrencyId currencyId,
+                        final Double rate) {
         this.currencyId = currencyId;
-        this.value = value;
+        this.rate = rate;
     }
 }

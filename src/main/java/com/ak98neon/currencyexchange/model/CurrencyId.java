@@ -12,7 +12,7 @@ import java.io.Serializable;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class CommissionId implements Serializable {
+public class CurrencyId implements Serializable {
 
     @Column(name = "from_currency")
     private String from;

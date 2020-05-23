@@ -2,11 +2,19 @@
 POST http://{{host}}/api/commissions
 Accept: application/json
 Content-Type: application/json
+Authorization: Basic admin password
 
 {
   "commissionPt": 0,
   "from": "EUR",
   "to": "RUB"
 }
+
+###
+
+#get all commissions
+GET http://{{host}}/api/commissions
+Content-Type: application/json
+Authorization: Basic admin password
 
 ###
