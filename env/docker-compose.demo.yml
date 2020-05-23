@@ -1,0 +1,33 @@
+version: '3.7'
+
+services:
+  postgres:
+    container_name: postgres_container
+    image: postgres
+    env_file:
+      - database.env # configure postgres
+    volumes:
+      - postgres:/data/postgres
+    ports:
+      - "5432:5432"
+    networks:
+      - postgres
+    restart: unless-stopped
+
+  service:
+    container_name: currency_exchanger
+    depends_on:
+      - postgres
+    image: akudria/currency-exchange:latest
+    ports:
+      - "8080:8080"
+    networks:
+      - postgres
+
+
+networks:
+  postgres:
+    driver: bridge
+
+volumes:
+  postgres:
