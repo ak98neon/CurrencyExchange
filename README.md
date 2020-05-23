@@ -10,5 +10,5 @@ After that service will be available on localhost:8080
 
 Project have rest client in root project directory list-api.rest
 
-Swagger: http://localhost:8080/swagger-ui.html#/
-Docker Hub: https://hub.docker.com/repository/docker/akudria/currency-exchange
+- Swagger: http://localhost:8080/swagger-ui.html#/
+- Docker Hub: https://hub.docker.com/repository/docker/akudria/currency-exchange
