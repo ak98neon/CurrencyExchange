@@ -1,3 +1,6 @@
+#Documentation about API
+#Swagger http://localhost:8080/swagger-ui.html#/
+
 #set new commissions to list of currencies
 POST http://{{host}}/api/commissions
 Accept: application/json
@@ -51,3 +54,5 @@ Authorization: Basic {{username}} {{password}}
   "currencyTo": "USD",
   "operationType": "GET"
 }
+
+###
