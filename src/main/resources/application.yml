@@ -1,0 +1,19 @@
+spring:
+  application:
+    name: dev
+  datasource:
+    driverClassName: org.postgresql.Driver
+    url: jdbc:postgresql://localhost:5432/currency_exchanger
+    username: dbuser
+    password: dbpass
+  jpa:
+    properties:
+      hibernate:
+        temp:
+          use_jdbc_metadata_default: false
+        jdbc:
+          lob:
+            non_contextual_creation: true
+
+server:
+  port: 8080

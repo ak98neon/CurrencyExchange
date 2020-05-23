@@ -1,0 +1,12 @@
+#set new commissions to list of currencies
+POST http://{{host}}/api/commissions
+Accept: application/json
+Content-Type: application/json
+
+{
+  "commissionPt": 0,
+  "from": "EUR",
+  "to": "RUB"
+}
+
+###
