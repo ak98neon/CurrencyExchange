@@ -20,7 +20,9 @@ public class ExchangeRateValidator implements ConstraintValidator<ExchangeRateCo
             return false;
         }
 
-        if (StringUtils.isEmpty(obj.getFrom()) || StringUtils.isEmpty(obj.getTo())) {
+        if (StringUtils.isEmpty(obj.getFrom())
+                || StringUtils.isEmpty(obj.getTo())
+                || obj.getFrom().equalsIgnoreCase(obj.getTo())) {
             context.disableDefaultConstraintViolation();
             context
                     .buildConstraintViolationWithTemplate("Name of currency isn't valid or empty")
