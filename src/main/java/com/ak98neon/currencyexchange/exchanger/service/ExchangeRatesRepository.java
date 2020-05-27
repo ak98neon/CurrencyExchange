@@ -1,7 +1,7 @@
-package com.ak98neon.currencyexchange.model.service;
+package com.ak98neon.currencyexchange.exchanger.service;
 
-import com.ak98neon.currencyexchange.model.CurrencyId;
-import com.ak98neon.currencyexchange.model.ExchangeRate;
+import com.ak98neon.currencyexchange.exchanger.entity.CurrencyId;
+import com.ak98neon.currencyexchange.exchanger.entity.ExchangeRate;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

@@ -1,6 +1,6 @@
 package com.ak98neon.currencyexchange.config;
 
-import com.ak98neon.currencyexchange.model.service.UserRepository;
+import com.ak98neon.currencyexchange.exchanger.service.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

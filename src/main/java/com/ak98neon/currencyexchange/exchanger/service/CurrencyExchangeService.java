@@ -1,7 +1,7 @@
-package com.ak98neon.currencyexchange.model.service;
+package com.ak98neon.currencyexchange.exchanger.service;
 
-import com.ak98neon.currencyexchange.model.Commission;
-import com.ak98neon.currencyexchange.model.ExchangeRate;
+import com.ak98neon.currencyexchange.exchanger.entity.Commission;
+import com.ak98neon.currencyexchange.exchanger.entity.ExchangeRate;
 import com.ak98neon.currencyexchange.web.dto.CommissionsDto;
 import com.ak98neon.currencyexchange.web.dto.ExchangeRateDto;
 import com.ak98neon.currencyexchange.web.dto.ExchangeRequest;

@@ -1,4 +1,4 @@
-package com.ak98neon.currencyexchange.model;
+package com.ak98neon.currencyexchange.exchanger.entity;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

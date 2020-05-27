@@ -1,6 +1,6 @@
-package com.ak98neon.currencyexchange.model.service;
+package com.ak98neon.currencyexchange.exchanger.service;
 
-import com.ak98neon.currencyexchange.model.User;
+import com.ak98neon.currencyexchange.exchanger.entity.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

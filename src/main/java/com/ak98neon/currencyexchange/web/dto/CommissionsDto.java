@@ -1,7 +1,7 @@
 package com.ak98neon.currencyexchange.web.dto;
 
-import com.ak98neon.currencyexchange.model.Commission;
-import com.ak98neon.currencyexchange.model.CurrencyId;
+import com.ak98neon.currencyexchange.exchanger.entity.Commission;
+import com.ak98neon.currencyexchange.exchanger.entity.CurrencyId;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import lombok.Data;
 import lombok.NoArgsConstructor;

@@ -1,10 +1,10 @@
-package com.ak98neon.currencyexchange.model.service;
+package com.ak98neon.currencyexchange.exchanger.service;
 
 import com.ak98neon.currencyexchange.CurrencyExchangerException;
-import com.ak98neon.currencyexchange.model.Commission;
-import com.ak98neon.currencyexchange.model.CurrencyId;
-import com.ak98neon.currencyexchange.model.ExchangeRate;
-import com.ak98neon.currencyexchange.model.Exchanger;
+import com.ak98neon.currencyexchange.exchanger.entity.Commission;
+import com.ak98neon.currencyexchange.exchanger.entity.CurrencyId;
+import com.ak98neon.currencyexchange.exchanger.entity.ExchangeRate;
+import com.ak98neon.currencyexchange.exchanger.entity.Exchanger;
 import com.ak98neon.currencyexchange.web.dto.CommissionsDto;
 import com.ak98neon.currencyexchange.web.dto.ExchangeRateDto;
 import com.ak98neon.currencyexchange.web.dto.ExchangeRequest;
@@ -34,9 +34,15 @@ public class DefaultCurrencyExchangeService implements CurrencyExchangeService {
     }
 
     @Override
+    @Transactional
     public CommissionsDto setCommission(final CommissionsDto commissionsDto) {
         log.info("Set new commission to currencies pair: " + commissionsDto);
-        commissionRepository.saveAndFlush(commissionsDto.to());
+        final Commission commission = commissionsDto.to();
+        commissionRepository.saveAndFlush(commission);
+
+        final CurrencyId backwardCurrencyId = new CurrencyId(commission.getCurrencyId().getTo(), commission.getCurrencyId().getFrom());
+        final Commission backwardCommission = new Commission(backwardCurrencyId, commission.getValue());
+        commissionRepository.saveAndFlush(backwardCommission);
         return commissionsDto;
     }
 
