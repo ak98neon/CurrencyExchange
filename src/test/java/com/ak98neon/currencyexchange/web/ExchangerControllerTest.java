@@ -57,7 +57,7 @@ public class ExchangerControllerTest {
     @Test
     public void setCommissionsToCurrencyPair_expect_is_created() throws Exception {
         final String fromTest = "test";
-        final CommissionsDto testCommission = new CommissionsDto(1.0, fromTest, fromTest);
+        final CommissionsDto testCommission = new CommissionsDto(BigDecimal.valueOf(1), fromTest, fromTest);
 
         Mockito.when(currencyExchangeService.setCommission(isA(CommissionsDto.class))).thenReturn(testCommission);
 
@@ -72,7 +72,7 @@ public class ExchangerControllerTest {
     public void getCommissionList_expect_is_ok() throws Exception {
         final String fromTest = "test";
         final List<Commission> commissionList = new ArrayList<>();
-        final Commission testCommission = new Commission(new CurrencyId(fromTest, fromTest), 1.0);
+        final Commission testCommission = new Commission(new CurrencyId(fromTest, fromTest), BigDecimal.valueOf(1));
         commissionList.add(testCommission);
         Mockito.when(currencyExchangeService.getCommission()).thenReturn(commissionList);
 
@@ -90,7 +90,7 @@ public class ExchangerControllerTest {
     @Test
     public void setExchangeRates_expect_is_ok() throws Exception {
         final String fromTest = "test";
-        final ExchangeRateDto exchangeRate = new ExchangeRateDto(fromTest, fromTest, 1.0);
+        final ExchangeRateDto exchangeRate = new ExchangeRateDto(fromTest, fromTest, BigDecimal.valueOf(1));
 
         Mockito.when(currencyExchangeService.setExchangeRate(isA(ExchangeRateDto.class))).thenReturn(exchangeRate);
 
@@ -104,7 +104,7 @@ public class ExchangerControllerTest {
     public void getExchangeRatesList_expect_is_ok() throws Exception {
         final String fromTest = "test";
         final List<ExchangeRate> exchangeRatesList = new ArrayList<>();
-        final ExchangeRate exchangeRate = new ExchangeRate(new CurrencyId(fromTest, fromTest), 1.0);
+        final ExchangeRate exchangeRate = new ExchangeRate(new CurrencyId(fromTest, fromTest), BigDecimal.valueOf(1));
         exchangeRatesList.add(exchangeRate);
         Mockito.when(currencyExchangeService.getExchangeRate()).thenReturn(exchangeRatesList);
 

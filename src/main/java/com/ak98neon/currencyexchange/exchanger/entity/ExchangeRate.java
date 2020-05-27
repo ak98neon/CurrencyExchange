@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
 import javax.persistence.Table;
+import java.math.BigDecimal;
 
 @Entity
 @Table(name = "exchange_rates")
@@ -14,10 +15,10 @@ import javax.persistence.Table;
 public class ExchangeRate {
     @EmbeddedId
     private CurrencyId currencyId;
-    private Double rate;
+    private BigDecimal rate;
 
     public ExchangeRate(final CurrencyId currencyId,
-                        final Double rate) {
+                        final BigDecimal rate) {
         this.currencyId = currencyId;
         this.rate = rate;
     }

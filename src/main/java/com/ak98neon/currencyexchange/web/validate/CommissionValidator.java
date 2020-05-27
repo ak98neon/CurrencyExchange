@@ -5,14 +5,15 @@ import org.springframework.util.StringUtils;
 
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
+import java.math.BigDecimal;
 
 public class CommissionValidator implements ConstraintValidator<CommissionConstraint, CommissionsDto> {
 
     @Override
     public boolean isValid(CommissionsDto commissionsDto, ConstraintValidatorContext constraintValidatorContext) {
-        final Double commissionPt = commissionsDto.getCommissionPt();
+        final BigDecimal commissionPt = commissionsDto.getCommissionPt();
 
-        if (commissionPt < 0.0 || commissionPt > 100.0) {
+        if (commissionPt.doubleValue() < 0.0 || commissionPt.doubleValue() > 100.0) {
             constraintValidatorContext.disableDefaultConstraintViolation();
             constraintValidatorContext
                     .buildConstraintViolationWithTemplate("Cannot set a new commission, value less or more than 0.0 : 100.0")

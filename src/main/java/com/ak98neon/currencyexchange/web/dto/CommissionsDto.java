@@ -6,18 +6,19 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.math.BigDecimal;
 import java.util.List;
 import java.util.stream.Collectors;
 
 @Data
 @NoArgsConstructor
 public class CommissionsDto {
-    private Double commissionPt;
+    private BigDecimal commissionPt;
     private String from;
     private String to;
 
     @JsonCreator
-    public CommissionsDto(final Double commissionPt,
+    public CommissionsDto(final BigDecimal commissionPt,
                           final String from,
                           final String to) {
         this.commissionPt = commissionPt;

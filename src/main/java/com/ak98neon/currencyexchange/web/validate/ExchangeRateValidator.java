@@ -5,14 +5,15 @@ import org.springframework.util.StringUtils;
 
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
+import java.math.BigDecimal;
 
 public class ExchangeRateValidator implements ConstraintValidator<ExchangeRateConstraint, ExchangeRateDto> {
 
     @Override
     public boolean isValid(ExchangeRateDto obj, ConstraintValidatorContext context) {
-        final Double rate = obj.getRate();
+        final BigDecimal rate = obj.getRate();
 
-        if (rate < 0) {
+        if (rate.doubleValue() < 0) {
             context.disableDefaultConstraintViolation();
             context
                     .buildConstraintViolationWithTemplate("Rate must be more than zero value")

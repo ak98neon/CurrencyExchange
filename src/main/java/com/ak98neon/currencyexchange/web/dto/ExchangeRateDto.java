@@ -6,6 +6,7 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.math.BigDecimal;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -14,12 +15,12 @@ import java.util.stream.Collectors;
 public class ExchangeRateDto {
     private String from;
     private String to;
-    private Double rate;
+    private BigDecimal rate;
 
     @JsonCreator
     public ExchangeRateDto(final String from,
                            final String to,
-                           final Double rate) {
+                           final BigDecimal rate) {
         this.from = from;
         this.to = to;
         this.rate = rate;

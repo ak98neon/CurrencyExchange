@@ -8,11 +8,8 @@ public final class DecimalUtils {
         throw new UnsupportedOperationException();
     }
 
-    public static double round(double value, int places) {
+    public static BigDecimal round(BigDecimal value, int places) {
         if (places < 0) throw new IllegalArgumentException();
-
-        BigDecimal bd = new BigDecimal(Double.toString(value));
-        bd = bd.setScale(places, RoundingMode.HALF_UP);
-        return bd.doubleValue();
+        return value.setScale(places, RoundingMode.HALF_UP);
     }
 }

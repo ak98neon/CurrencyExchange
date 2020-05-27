@@ -15,6 +15,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 import static com.ak98neon.currencyexchange.util.DecimalUtils.round;
@@ -60,7 +61,9 @@ public class DefaultCurrencyExchangeService implements CurrencyExchangeService {
         log.info("Setting new exchange rate to currencies pair: " + exchangeRateDto);
         exchangeRatesRepository.saveAndFlush(exchangeRateDto.to());
 
-        final double backwardRate = 1 / (exchangeRateDto.getRate() / 1);
+        final BigDecimal backwardRate = new BigDecimal("1")
+                .divide(exchangeRateDto.getRate().divide(new BigDecimal("1")));
+
         final ExchangeRate backwardExchangeRate =
                 new ExchangeRate(
                         new CurrencyId(exchangeRateDto.getTo(), exchangeRateDto.getFrom()),

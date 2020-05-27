@@ -29,7 +29,7 @@ public class Exchanger {
 
         final BigDecimal amountFrom = exchangeRequest.getAmountFrom();
 
-        BigDecimal multiply = amountFrom.multiply(BigDecimal.valueOf(exchangeRate.getRate()));
+        BigDecimal multiply = amountFrom.multiply(exchangeRate.getRate());
         exchangeRequest.setAmountFrom(calcPercent(multiply, commission).setScale(2, RoundingMode.HALF_EVEN));
         return exchangeRequest;
     }
@@ -44,14 +44,14 @@ public class Exchanger {
 
         final BigDecimal amountTo = exchangeRequest.getAmountTo();
 
-        BigDecimal multiply = amountTo.multiply(BigDecimal.valueOf(exchangeRate.getRate()));
+        BigDecimal multiply = amountTo.multiply(exchangeRate.getRate());
         exchangeRequest.setAmountFrom(calcPercent(multiply, commission).setScale(2, RoundingMode.HALF_EVEN));
         return exchangeRequest;
     }
 
     public BigDecimal calcPercent(final BigDecimal amount,
                                   final Commission commission) {
-        BigDecimal decimalCommissionValue = BigDecimal.valueOf(commission.getValue()).divide(new BigDecimal("100"));
+        BigDecimal decimalCommissionValue = commission.getValue().divide(new BigDecimal("100"));
         return amount.subtract(amount.multiply(decimalCommissionValue));
     }
 }
