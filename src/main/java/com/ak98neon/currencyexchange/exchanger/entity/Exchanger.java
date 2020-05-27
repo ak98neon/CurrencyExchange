@@ -3,10 +3,14 @@ package com.ak98neon.currencyexchange.exchanger.entity;
 import com.ak98neon.currencyexchange.exchanger.repository.CommissionRepository;
 import com.ak98neon.currencyexchange.exchanger.repository.ExchangeRatesRepository;
 import com.ak98neon.currencyexchange.web.dto.ExchangeRequest;
+import com.ak98neon.currencyexchange.web.dto.OperationType;
 import org.springframework.stereotype.Component;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
+
+import static com.ak98neon.currencyexchange.web.dto.OperationType.GET;
+import static com.ak98neon.currencyexchange.web.dto.OperationType.GIVE;
 
 @Component
 public class Exchanger {
@@ -30,7 +34,7 @@ public class Exchanger {
         final BigDecimal amountFrom = exchangeRequest.getAmountFrom();
 
         BigDecimal multiply = amountFrom.multiply(exchangeRate.getRate());
-        exchangeRequest.setAmountFrom(calcPercent(multiply, commission).setScale(2, RoundingMode.HALF_EVEN));
+        exchangeRequest.setAmountFrom(calcPercent(multiply, commission, GIVE).setScale(2, RoundingMode.HALF_EVEN));
         return exchangeRequest;
     }
 
@@ -45,13 +49,15 @@ public class Exchanger {
         final BigDecimal amountTo = exchangeRequest.getAmountTo();
 
         BigDecimal multiply = amountTo.multiply(exchangeRate.getRate());
-        exchangeRequest.setAmountFrom(calcPercent(multiply, commission).setScale(2, RoundingMode.HALF_EVEN));
+        exchangeRequest.setAmountFrom(calcPercent(multiply, commission, GET).setScale(2, RoundingMode.HALF_EVEN));
         return exchangeRequest;
     }
 
     public BigDecimal calcPercent(final BigDecimal amount,
-                                  final Commission commission) {
+                                  final Commission commission,
+                                  final OperationType operationType) {
         BigDecimal decimalCommissionValue = commission.getValue().divide(new BigDecimal("100"));
-        return amount.subtract(amount.multiply(decimalCommissionValue));
+        final BigDecimal amountWithCommission = amount.multiply(decimalCommissionValue);
+        return operationType.equals(GIVE) ? amount.subtract(amountWithCommission) : amount.add(amountWithCommission);
     }
 }
