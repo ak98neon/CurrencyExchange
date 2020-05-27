@@ -1,7 +1,7 @@
 package com.ak98neon.currencyexchange.config;
 
 import com.ak98neon.currencyexchange.exchanger.entity.User;
-import com.ak98neon.currencyexchange.exchanger.service.UserRepository;
+import com.ak98neon.currencyexchange.exchanger.repository.UserRepository;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;

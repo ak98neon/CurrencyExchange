@@ -1,6 +1,6 @@
 package com.ak98neon.currencyexchange.web.validate;
 
-import com.ak98neon.currencyexchange.exchanger.service.CurrencyExchangeService;
+import com.ak98neon.currencyexchange.exchanger.CurrencyExchangeService;
 
 import javax.validation.ConstraintViolation;
 import javax.validation.ConstraintViolationException;

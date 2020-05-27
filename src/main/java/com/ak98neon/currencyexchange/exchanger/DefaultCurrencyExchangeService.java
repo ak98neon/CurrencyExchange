@@ -1,10 +1,12 @@
-package com.ak98neon.currencyexchange.exchanger.service;
+package com.ak98neon.currencyexchange.exchanger;
 
 import com.ak98neon.currencyexchange.CurrencyExchangerException;
 import com.ak98neon.currencyexchange.exchanger.entity.Commission;
 import com.ak98neon.currencyexchange.exchanger.entity.CurrencyId;
 import com.ak98neon.currencyexchange.exchanger.entity.ExchangeRate;
 import com.ak98neon.currencyexchange.exchanger.entity.Exchanger;
+import com.ak98neon.currencyexchange.exchanger.repository.CommissionRepository;
+import com.ak98neon.currencyexchange.exchanger.repository.ExchangeRatesRepository;
 import com.ak98neon.currencyexchange.web.dto.CommissionsDto;
 import com.ak98neon.currencyexchange.web.dto.ExchangeRateDto;
 import com.ak98neon.currencyexchange.web.dto.ExchangeRequest;

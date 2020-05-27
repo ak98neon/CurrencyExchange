@@ -1,8 +1,8 @@
 package com.ak98neon.currencyexchange.web.validate;
 
 import com.ak98neon.currencyexchange.exchanger.entity.CurrencyId;
-import com.ak98neon.currencyexchange.exchanger.service.CommissionRepository;
-import com.ak98neon.currencyexchange.exchanger.service.ExchangeRatesRepository;
+import com.ak98neon.currencyexchange.exchanger.repository.CommissionRepository;
+import com.ak98neon.currencyexchange.exchanger.repository.ExchangeRatesRepository;
 import com.ak98neon.currencyexchange.web.dto.ExchangeRequest;
 import org.springframework.util.StringUtils;
 

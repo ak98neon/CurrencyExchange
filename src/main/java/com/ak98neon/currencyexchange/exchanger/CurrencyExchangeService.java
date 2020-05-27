@@ -1,4 +1,4 @@
-package com.ak98neon.currencyexchange.exchanger.service;
+package com.ak98neon.currencyexchange.exchanger;
 
 import com.ak98neon.currencyexchange.exchanger.entity.Commission;
 import com.ak98neon.currencyexchange.exchanger.entity.ExchangeRate;
