@@ -34,7 +34,7 @@ public class Exchanger {
         final BigDecimal amountFrom = exchangeRequest.getAmountFrom();
 
         BigDecimal multiply = amountFrom.multiply(exchangeRate.getRate());
-        exchangeRequest.setAmountFrom(calcPercent(multiply, commission, GIVE).setScale(2, RoundingMode.HALF_EVEN));
+        exchangeRequest.setAmountTo(calcPercent(multiply, commission, GIVE).setScale(2, RoundingMode.HALF_EVEN));
         return exchangeRequest;
     }
 
