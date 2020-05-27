@@ -38,21 +38,20 @@ public class Exchanger {
         final String currencyFrom = exchangeRequest.getCurrencyFrom();
         final String currencyTo = exchangeRequest.getCurrencyTo();
 
-        final CurrencyId currencyId = new CurrencyId(currencyTo, currencyFrom);
+        final CurrencyId currencyId = new CurrencyId(currencyFrom, currencyTo);
         final Commission commission = commissionRepository.findByCurrencyId(currencyId);
         final ExchangeRate exchangeRate = exchangeRatesRepository.findByCurrencyId(currencyId);
 
         final BigDecimal amountTo = exchangeRequest.getAmountTo();
 
-        final BigDecimal multiply = amountTo.multiply(BigDecimal.valueOf(exchangeRate.getRate()));
-        exchangeRequest.setAmountFrom(multiply.subtract(calcPercent(multiply, commission)));
+        BigDecimal multiply = amountTo.multiply(BigDecimal.valueOf(exchangeRate.getRate()));
+        exchangeRequest.setAmountFrom(calcPercent(multiply, commission).setScale(2, RoundingMode.HALF_EVEN));
         return exchangeRequest;
     }
 
     public BigDecimal calcPercent(final BigDecimal amount,
                                   final Commission commission) {
-        return amount
-                .divide(BigDecimal.valueOf(100), RoundingMode.HALF_EVEN)
-                .multiply(BigDecimal.valueOf(commission.getValue()));
+        BigDecimal decimalCommissionValue = BigDecimal.valueOf(commission.getValue()).divide(new BigDecimal("100"));
+        return amount.subtract(amount.multiply(decimalCommissionValue));
     }
 }
