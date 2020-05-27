@@ -29,8 +29,8 @@ public class Exchanger {
 
         final BigDecimal amountFrom = exchangeRequest.getAmountFrom();
 
-        final BigDecimal multiply = amountFrom.multiply(BigDecimal.valueOf(exchangeRate.getRate()));
-        exchangeRequest.setAmountTo(multiply.subtract(calcPercent(multiply, commission)));
+        BigDecimal multiply = amountFrom.multiply(BigDecimal.valueOf(exchangeRate.getRate()));
+        exchangeRequest.setAmountFrom(calcPercent(multiply, commission).setScale(2, RoundingMode.HALF_EVEN));
         return exchangeRequest;
     }
 
@@ -38,7 +38,7 @@ public class Exchanger {
         final String currencyFrom = exchangeRequest.getCurrencyFrom();
         final String currencyTo = exchangeRequest.getCurrencyTo();
 
-        final CurrencyId currencyId = new CurrencyId(currencyFrom, currencyTo);
+        final CurrencyId currencyId = new CurrencyId(currencyTo, currencyFrom);
         final Commission commission = commissionRepository.findByCurrencyId(currencyId);
         final ExchangeRate exchangeRate = exchangeRatesRepository.findByCurrencyId(currencyId);
 
