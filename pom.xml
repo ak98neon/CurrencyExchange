@@ -17,7 +17,7 @@
     <properties>
         <java.version>1.8</java.version>
         <validation.api.version>2.0.1.Final</validation.api.version>
-        <hib.validator.version>5.2.4.Final</hib.validator.version>
+        <hib.validator.version>5.3.5.Final</hib.validator.version>
         <swagger.version>2.8.0</swagger.version>
         <sonar.version>3.4.0.905</sonar.version>
     </properties>
